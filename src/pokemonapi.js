@@ -1,7 +1,5 @@
-import pikachu from './pikachu.json'
-
 export async function search(name) {
-  return new Promise(function (resolve) {
-    return resolve(pikachu)
-  })
+  const result = await fetch(`https://pokeapi.co/api/v2/pokemon/${name}`)
+  return result.json()
 }
+

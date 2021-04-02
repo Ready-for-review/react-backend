@@ -1,4 +1,6 @@
 import './App.css';
+import {useEffect, useState} from "react";
+import {search} from "./pokemonapi";
 
 function App() {
   return (
@@ -12,7 +14,7 @@ function App() {
 function Pokemon() {
   const [pokemon, setPokemon] = useState(null)
   useEffect(function () {
-    search("dummy").then(function (result) {
+    search("ditto").then(function (result) { // it's the same like await
       setPokemon(result)
     })
   }, [])
