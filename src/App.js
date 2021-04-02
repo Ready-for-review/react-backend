@@ -6,15 +6,15 @@ function App() {
   return (
       <div>
         <Search/>
-        <Pokemon/>
+        <Pokemon name="ditto"/>
       </div>
   );
 }
 
-function Pokemon() {
+function Pokemon({name}) {
   const [pokemon, setPokemon] = useState(null)
   useEffect(function () {
-    search("ditto").then(function (result) { // it's the same like await
+    search(name).then(function (result) { // it's the same like await
       setPokemon(result)
     })
   }, [])
