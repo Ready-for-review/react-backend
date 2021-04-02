@@ -3,10 +3,11 @@ import {useEffect, useState} from "react";
 import {search} from "./pokemonapi";
 
 function App() {
+  const [name, setName] = useState("pikachu")
   return (
       <div>
-        <Search/>
-        <Pokemon name="ditto"/>
+        <Search onSearch={setName}/>
+        <Pokemon name={name}/>
       </div>
   );
 }
@@ -19,12 +20,11 @@ function Pokemon({name}) {
     })
   }, [])
 
-
   return pokemon ?
       <>
-      <img
-          src={pokemon.sprites.front_default} width="200" height="200"/>
-      <h1>{pokemon.name}</h1>
+        <img
+            src={pokemon.sprites.front_default} width="200" height="200"/>
+        <h1>{pokemon.name}</h1>
       </> : ""
 }
 
