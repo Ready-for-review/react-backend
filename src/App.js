@@ -18,7 +18,7 @@ function Pokemon({name}) {
     search(name).then(function (result) { // it's the same like await
       setPokemon(result)
     })
-  }, [])
+  }, [name])
 
   return pokemon ?
       <>
@@ -28,8 +28,19 @@ function Pokemon({name}) {
       </> : ""
 }
 
-function Search() {
-  return ""
+function Search({onSearch}) {
+  const [name, setName] = useState("")
+  return <form onSubmit={function (event) {
+    event.preventDefault();
+    event.stopPropagation();
+    onSearch(name)
+    setName("")
+  }}>
+    <input type="text" value={name} onChange={function (event) {
+      setName(event.target.value)
+    }}/>
+    <input type="submit" value="Search"/>
+  </form>
 }
 
 export default App;
