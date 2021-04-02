@@ -2,18 +2,28 @@ import './App.css';
 
 function App() {
   return (
-    <div>
-      <Search/>
-      <Pokemon/>
-    </div>
+      <div>
+        <Search/>
+        <Pokemon/>
+      </div>
   );
 }
 
 function Pokemon() {
-  return <>
-          <img src="https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/pokemon/25.png"/>
-          <h1>Pikachu</h1>
-         </>
+  const [pokemon, setPokemon] = useState(null)
+  useEffect(function () {
+    search("dummy").then(function (result) {
+      setPokemon(result)
+    })
+  }, [])
+
+
+  return pokemon ?
+      <>
+      <img
+          src={pokemon.sprites.front_default} width="200" height="200"/>
+      <h1>{pokemon.name}</h1>
+      </> : ""
 }
 
 function Search() {
